@@ -18,6 +18,10 @@ exports.init = function(grunt) {
 		var destination = options.destination;
 		var max = concat(source);
 		var min;
+		var opts = [];
+		if (options.linebreak) {
+			opts.push('--line-break', options.linebreak);
+		}
 		var report = options.report;
 
 		// Ugly hack to create the destination path automatically if needed
@@ -30,6 +34,7 @@ exports.init = function(grunt) {
 			'type': 'yui-' + options.type,
 			'fileIn': source,
 			'fileOut': destination,
+			'options': opts,
 			'callback': function(error) {
 				if (error) {
 					grunt.warn(error);
